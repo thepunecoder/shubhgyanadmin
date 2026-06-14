@@ -1,24 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
 <body>
 
 <div th:fragment="footer">
-
-    <div style="
-        margin-left:220px;
-        padding:15px;
-        background-color:#f3f4f6;
-        text-align:center;
-        font-family:Arial;
-        position:fixed;
-        bottom:0;
-        width:calc(100% - 220px);
-    ">
-
-        <small>© 2026 ShubhGyan Admin Panel | Built with Spring Boot</small>
-
-    </div>
-
+    <footer class="ml-64 bg-slate-50 border-t border-slate-200 py-4 px-8 text-center text-sm text-slate-500 fixed bottom-0 right-0 left-0">
+        <p>© 2026 <span class="font-semibold text-slate-700">ShubhGyan Admin Panel</span> | Built with Spring Boot</p>
+    </footer>
 </div>
 
 </body>

@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Upload</title>
+    <title>Upload Configurations</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased pt-16 min-h-screen pb-16">
 
-<h2>Upload JSON</h2>
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-<form method="post" enctype="multipart/form-data" action="/upload">
-    <input type="file" name="file"/>
-    <button type="submit">Upload</button>
-</form>
+<main class="ml-64 p-8 max-w-xl">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-8">
+        <div class="mb-6 border-b border-slate-100 pb-4">
+            <h2 class="text-2xl font-bold text-slate-900">📤 Upload JSON Metadata</h2>
+            <p class="text-sm text-slate-500">Import bulk tip payloads parsing target JSON structural parameters.</p>
+        </div>
 
-<p th:text="${message}"></p>
+        <div th:if="${message != null}" class="mb-5 p-4 rounded-lg bg-indigo-50 border border-indigo-100 text-sm text-indigo-800 font-medium" th:text="${message}"></div>
 
-<a href="/tips">View Tips</a>
+        <form method="post" enctype="multipart/form-data" action="/upload" class="space-y-6">
+            <div class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:border-indigo-500 transition relative">
+                <input type="file" name="file" required class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                <div class="space-y-1 pointer-events-none">
+                    <span class="text-3xl block">📄</span>
+                    <p class="text-sm font-medium text-slate-700">Click to upload or drag & drop</p>
+                    <p class="text-xs text-slate-400">Only structural JSON files accepted</p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+                <a href="/tips" class="text-sm font-medium text-indigo-600 hover:text-indigo-800 transition">← View Active Tips</a>
+                <button type="submit" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold rounded-lg text-sm shadow-sm transition">
+                    Upload
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

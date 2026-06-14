@@ -1,33 +1,68 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Tips</title>
+    <title>Tips Registry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 antialiased pt-16 min-h-screen pb-16">
 
-<h2>All Tips</h2>
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
-<a href="/tips/create">Create New</a>
- | <a href="/tips/download-json" download>Download JSON</a>
+<main class="ml-64 p-8 max-w-6xl">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
+        <div>
+            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">All Live Tips</h2>
+            <p class="text-sm text-slate-500 mt-1">Manage database records dynamically below.</p>
+        </div>
+        <div class="flex space-x-3">
+            <a href="/tips/download-json" download class="inline-flex items-center px-4 py-2 border border-slate-300 rounded-lg text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
+                ⬇️ Download JSON
+            </a>
+            <a href="/tips/create" class="inline-flex items-center px-4 py-2 rounded-lg text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm">
+                ➕ Create New
+            </a>
+        </div>
+    </div>
 
-<table border="1">
-    <tr>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Featured</th>
-        <th>Actions</th>
-    </tr>
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                <tr class="bg-slate-50 border-b border-slate-200 text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                    <th class="px-6 py-4">Title</th>
+                    <th class="px-6 py-4">Category</th>
+                    <th class="px-6 py-4 text-center">Featured Status</th>
+                    <th class="px-6 py-4 text-right">Actions</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-sm text-slate-700">
+                <tr th:each="t : ${tips}" class="hover:bg-slate-50/70 transition">
+                    <td class="px-6 py-4 font-medium text-slate-900" th:text="${t.title}"></td>
+                    <td class="px-6 py-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-800" th:text="${t.category}"></span>
+                    </td>
+                    <td class="px-6 py-4 text-center">
+                        <span th:if="${t.featured}" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">★ Featured</span>
+                        <span th:unless="${t.featured}" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 text-slate-400">Standard</span>
+                    </td>
+                    <td class="px-6 py-4 text-right space-x-3 font-medium">
+                        <a th:href="@{'/tips/edit/' + ${t.id}}" class="text-indigo-600 hover:text-indigo-900 transition">Edit</a>
+                        <a th:href="@{'/tips/delete/' + ${t.id}}" class="text-rose-600 hover:text-rose-900 transition" onclick="return confirm('Are you sure you want to delete this tip?');">Delete</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(tips)}">
+                    <td colspan="4" class="px-6 py-12 text-center text-slate-400">
+                        No tips metrics inside the current scope. Create one above!
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
 
-    <tr th:each="t : ${tips}">
-        <td th:text="${t.title}"></td>
-        <td th:text="${t.category}"></td>
-        <td th:text="${t.featured}"></td>
-        <td>
-            <a th:href="@{'/tips/edit/' + ${t.id}}">Edit</a>
-            <a th:href="@{'/tips/delete/' + ${t.id}}">Delete</a>
-        </td>
-    </tr>
-</table>
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
