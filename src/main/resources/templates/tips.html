@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tips</title>
+</head>
+<body>
+
+<h2>All Tips</h2>
+
+<a href="/tips/create">Create New</a>
+ | <a href="/tips/download-json" download>Download JSON</a>
+
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Featured</th>
+        <th>Actions</th>
+    </tr>
+
+    <tr th:each="t : ${tips}">
+        <td th:text="${t.title}"></td>
+        <td th:text="${t.category}"></td>
+        <td th:text="${t.featured}"></td>
+        <td>
+            <a th:href="@{'/tips/edit/' + ${t.id}}">Edit</a>
+            <a th:href="@{'/tips/delete/' + ${t.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

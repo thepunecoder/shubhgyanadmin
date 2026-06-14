@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Create Tip</title>
+</head>
+
+<body>
+
+<div th:replace="fragments/sidebar :: sidebar"></div>
+
+<div style="margin-left:240px; padding:30px; font-family:Arial;">
+
+    <h2>➕ Create New Tip</h2>
+
+    <form method="post" action="/tips/create">
+
+        <!-- TITLE -->
+        <label>Title</label><br>
+        <input type="text" name="title" required style="width:400px;"><br><br>
+
+        <!-- DESCRIPTION -->
+        <label>Description</label><br>
+        <textarea name="description" rows="5" style="width:400px;" required></textarea><br><br>
+
+        <!-- CATEGORY -->
+        <label>Category</label><br>
+        <input type="text" name="category" style="width:400px;"><br><br>
+
+        <!-- IMAGE URL -->
+        <label>Image URL</label><br>
+        <input type="text" name="imageUrl" style="width:400px;"><br><br>
+
+        <!-- AUDIO URL -->
+        <label>Audio URL</label><br>
+        <input type="text" name="audioUrl" style="width:400px;"><br><br>
+
+        <!-- YOUTUBE URL -->
+        <label>YouTube URL</label><br>
+        <input type="text" name="youtubeUrl" style="width:400px;"><br><br>
+
+        <!-- FEATURED -->
+        <label>
+            <input type="checkbox" name="featured">
+            Featured Tip
+        </label>
+
+        <br><br>
+
+        <!-- SUBMIT -->
+        <button type="submit" style="padding:10px 20px;">
+            Save Tip
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

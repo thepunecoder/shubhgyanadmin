@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+
+    <div style="
+        background-color:#1f2937;
+        color:white;
+        padding:15px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-family:Arial;
+    ">
+
+        <h2 style="margin:0;">📚 ShubhGyan Admin</h2>
+
+        <div>
+            <a href="/" style="color:white; margin-right:15px;">Home</a>
+            <a href="/tips" style="color:white; margin-right:15px;">Tips</a>
+            <a href="/tips/create" style="color:white; margin-right:15px;">Create</a>
+            <a href="/tips/download-json" style="color:white;">Download</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
